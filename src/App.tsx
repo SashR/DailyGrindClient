@@ -1,25 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import { Button } from '@mui/material';
+
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import PersistentDrawerLeft from './Components/Layout/Navigation';
+
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+});
+const lightTheme = createTheme({
+  palette: {
+    mode: 'light',
+  },
+});
 
 function App() {
+  const [theme, setTheme] = useState<"dark"|"light">("dark");
+  const toggleTheme = () => {
+    setTheme((val)=>val==="dark" ? "light" : "dark");
+  }
+
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
+        <CssBaseline />
+        <PersistentDrawerLeft toggleTheme={toggleTheme} />
+
+          <Button variant="contained" onClick={toggleTheme}>Contained</Button>
+        <main>This app is using the dark mode</main>
+      </ThemeProvider>
     </div>
+
   );
 }
 
