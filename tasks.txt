@@ -1,0 +1,19 @@
+1. Add switch component
+2. Connect to state, monitor changes
+3. Connect switch component to theme function
+4. Adjust header layout, push theme switch to top right
+
+5. Create body component
+6. Create a home page component, using the body component
+7. Add react router to application
+8. Setup react router
+9. Setup two basic pages
+10. Setup basic navigation
+
+11. Add redux to application
+12. Setup redux in app
+13. Setup state slice for themes
+14. Setup reducer for themes
+15. Connect components to reducer and state
+16. Test, debug
+17. Create repo -- test project with TS, react router, MUI, and redux

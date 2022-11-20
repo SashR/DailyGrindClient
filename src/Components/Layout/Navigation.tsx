@@ -18,7 +18,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
-import { Button } from '@mui/material';
+import { Button, FormControlLabel, FormGroup, Grid, Switch } from '@mui/material';
 
 const drawerWidth = 240;
 
@@ -73,12 +73,13 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 
 
 interface NavProps {
-    toggleTheme: ()=>void
+    toggleTheme: ()=>void,
+    currentTheme: string
 }
 
 
 export default function PersistentDrawerLeft(props: NavProps) {
-    const {toggleTheme} = props;
+    const {toggleTheme, currentTheme} = props;
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -90,26 +91,37 @@ export default function PersistentDrawerLeft(props: NavProps) {
     setOpen(false);
   };
 
-
-
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar position="fixed" open={open}>
         <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            sx={{ mr: 2, ...(open && { display: 'none' }) }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            Persistent drawer
-          </Typography>
-          <Button variant="contained" onClick={toggleTheme}> Color Mode </Button>
+          <Grid container spacing={2}>
+            <Grid item xs={1}>
+              <IconButton
+                color="inherit"
+                aria-label="open drawer"
+                onClick={handleDrawerOpen}
+                edge="start"
+                sx={{ mr: 2, ...(open && { display: 'none' }) }}
+              >
+              <MenuIcon />
+            </IconButton> 
+            </Grid>
+            <Grid item xs={10}>
+              <Typography variant="h6" noWrap component="div">
+                Persistent drawer
+              </Typography>         
+            </Grid>
+            <Grid item xs={1}>
+              <FormGroup style={{marginLeft:"5"}}>
+                <FormControlLabel 
+                  control={<Switch defaultChecked onClick={toggleTheme} />} 
+                  label={currentTheme} 
+                />
+            </FormGroup>
+            </Grid>
+          </Grid>
         </Toolbar>
       </AppBar>
       <Drawer

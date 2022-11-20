@@ -28,7 +28,7 @@ function App() {
     <div className="App">
       <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
         <CssBaseline />
-        <PersistentDrawerLeft toggleTheme={toggleTheme} />
+        <PersistentDrawerLeft toggleTheme={toggleTheme} currentTheme={theme} />
 
           <Button variant="contained" onClick={toggleTheme}>Contained</Button>
         <main>This app is using the dark mode</main>
