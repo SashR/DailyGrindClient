@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import './App.css';
-import { Button } from '@mui/material';
 
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import PersistentDrawerLeft from './Components/Layout/Navigation';
+import About from './Components/Layout/Pages/About/About';
+import Home from './Components/Layout/Pages/Home/Home';
+
 
 const darkTheme = createTheme({
   palette: {
@@ -28,10 +30,10 @@ function App() {
     <div className="App">
       <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
         <CssBaseline />
-        <PersistentDrawerLeft toggleTheme={toggleTheme} currentTheme={theme} />
-
-          <Button variant="contained" onClick={toggleTheme}>Contained</Button>
-        <main>This app is using the dark mode</main>
+        <PersistentDrawerLeft toggleTheme={toggleTheme} currentTheme={theme}>
+          <Home />
+          {/* <About /> */}
+        </PersistentDrawerLeft>
       </ThemeProvider>
     </div>
 
